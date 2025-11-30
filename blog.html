@@ -5,101 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Namma Kudla</title>
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Blog preview boxes - consistent with other pages */
-        .blog-posts {
-            margin-top: 40px;
-            padding: 20px 0;
-        }
-        .blog-posts h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .blog-posts .container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .blog-posts .box {
-            width: 180px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .blog-posts .box img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-        .blog-posts .box h3 {
-            font-size: 16px;
-            margin-top: 8px;
-            color: #333;
-        }
-
-        /* Submit experience form */
-        .submit-experience {
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: #f9f9f9;
-        }
-        .submit-experience h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .submit-experience input,
-        .submit-experience textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
-        .submit-experience button {
-            padding: 10px 20px;
-            font-size: 14px;
-            border: none;
-            border-radius: 5px;
-            background-color: #ffde59;
-            cursor: pointer;
-        }
-        .submit-experience button:hover {
-            background-color: #e6c84d;
-        }
-
-        /* User-submitted posts */
-        .user-posts {
-            max-width: 800px;
-            margin: 20px auto 60px auto;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .user-posts .post-box {
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background: #fff;
-        }
-        .user-posts .post-box h3 {
-            margin-bottom: 10px;
-        }
-        .user-posts .post-box p {
-            font-size: 14px;
-        }
-        .user-posts .post-box img {
-            width: 100%;
-            max-height: 200px;
-            object-fit: cover;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
 
@@ -118,76 +23,50 @@
     </nav>
 </header>
 
-<!-- Blog Previews -->
+<!-- PAGE HEADING -->
+<section class="blog-section">
+    <h2>Mangalore Experiences & Delicacies</h2>
+</section>
+
+<!-- BLOG POSTS -->
 <section class="blog-posts">
-    <h2>Latest Blog Posts</h2>
-    <div class="container">
-
+    <div class="container-centered">
+        <!-- Panambur -->
         <div class="box">
-            <a href="#">
-                <img src="image/clock.jpeg" alt="Clock Tower">
-                <h3>Clock Tower</h3>
-            </a>
+            <div class="img-box">
+                <img src="image/beach1.jpeg" alt="Panambur Beach">
+            </div>
+            <h3>Panambur Beach</h3>
+            <p>Panambur Beach is one of the most popular beaches in Mangalore, known for its scenic beauty, camel rides, and water sports.</p>
         </div>
 
+        <!-- Pabbas -->
         <div class="box">
-            <a href="#">
+            <div class="img-box">
                 <img src="image/pabbas.jpeg" alt="Pabbas Ice Cream">
-                <h3>Pabbas Ice Cream</h3>
-            </a>
+            </div>
+            <h3>Pabbas</h3>
+            <p>Pabbas is a famous ice cream parlour in Mangalore, known for its delicious and unique ice cream flavours loved by locals and tourists alike.</p>
         </div>
 
+        <!-- Gadayikallu -->
         <div class="box">
-            <a href="#">
-                <img src="image/gadayikallu.jpeg" alt="Gadayikallu">
-                <h3>Gadayikallu</h3>
-            </a>
+            <div class="img-box">
+                <img src="image/gadayikallu.jpeg" alt="Gadayikallu Hill">
+            </div>
+            <h3>Gadayikallu Hill</h3>
+            <p>GGadaikallu, also known as Jamalabad Fort, is a historical trekking destination near Belthangady, mangalore, famous for its challenging ascent up nearly
+                 1,800 stone steps to a hilltop fort built by Tipu Sultan</p>
         </div>
-
     </div>
 </section>
 
-<!-- Submit Your Experience Form -->
-<section class="submit-experience">
-    <h2>Share Your Experience</h2>
-    <form id="experience-form">
-        <input type="text" id="title" placeholder="Title" required>
-        <textarea id="description" rows="4" placeholder="Write your experience..." required></textarea>
-        <input type="text" id="image-url" placeholder="Image URL (optional)">
-        <button type="submit">Submit</button>
-    </form>
+<!-- USER EXPERIENCE / TRAVEL STORY -->
+<section class="comment-section">
+    <h3>Share Your Experience</h3>
+    <textarea placeholder="Write your travel story, tips, or experiences here..."></textarea>
+    <button>Submit</button>
 </section>
-
-<!-- User Submitted Posts -->
-<section class="user-posts" id="user-posts">
-    <!-- JS will append new posts here -->
-</section>
-
-<script>
-    const form = document.getElementById('experience-form');
-    const userPosts = document.getElementById('user-posts');
-
-    form.addEventListener('submit', function(e){
-        e.preventDefault();
-        const title = document.getElementById('title').value;
-        const description = document.getElementById('description').value;
-        const imageUrl = document.getElementById('image-url').value;
-
-        const postBox = document.createElement('div');
-        postBox.className = 'post-box';
-
-        let content = `<h3>${title}</h3><p>${description}</p>`;
-        if(imageUrl){
-            content += `<img src="${imageUrl}" alt="${title}">`;
-        }
-
-        postBox.innerHTML = content;
-        userPosts.prepend(postBox); // newest on top
-
-        form.reset();
-        alert('Your experience has been added!');
-    });
-</script>
 
 </body>
 </html>

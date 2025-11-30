@@ -1,44 +1,27 @@
-// === SEARCH FILTER ===
-const searchBar = document.getElementById('searchBar');
-const postCards = document.querySelectorAll('.post-card');
+document.getElementById("expForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-if (searchBar) {
-  searchBar.addEventListener('input', (e) => {
-    const q = e.target.value.trim().toLowerCase();
-    postCards.forEach(card => {
-      const title = card.dataset.title || '';
-      const textMatch = title.toLowerCase().includes(q);
-      card.style.display = q === '' ? 'flex' : (textMatch ? 'flex' : 'none');
-    });
-  });
-}
+    let name = document.getElementById("name").value;
+    let exp = document.getElementById("experience").value;
+    let photoInput = document.getElementById("photo");
 
-// === COMMENTS using localStorage ===
-const commentsList = document.getElementById('commentsList');
-const commentInput = document.getElementById('commentInput');
-const commentBtn = document.getElementById('commentBtn');
+    let postBox = document.createElement("div");
+    postBox.classList.add("post-box");
 
-function loadComments() {
-  const arr = JSON.parse(localStorage.getItem('nk_comments') || '[]');
-  commentsList.innerHTML = arr.length
-    ? arr.map(c => `<p>${escapeHtml(c)}</p>`).join('')
-    : '<p style="color:#666">No comments yet — be the first!</p>';
-}
+    let imgTag = "";
 
-function escapeHtml(str) {
-  return str.replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-}
+    if (photoInput.files && photoInput.files[0]) {
+        let imgURL = URL.createObjectURL(photoInput.files[0]);
+        imgTag = `<img src="${imgURL}" class="post-img">`;
+    }
 
-if (commentBtn) {
-  commentBtn.addEventListener('click', () => {
-    const text = (commentInput.value || '').trim();
-    if (!text) return;
-    const arr = JSON.parse(localStorage.getItem('nk_comments') || '[]');
-    arr.push(text);
-    localStorage.setItem('nk_comments', JSON.stringify(arr));
-    commentInput.value = '';
-    loadComments();
-  });
-}
+    postBox.innerHTML = `
+        ${imgTag}
+        <h3>${name}</h3>
+        <p>${exp}</p>
+    `;
 
-loadComments();
+    document.getElementById("postContainer").prepend(postBox);
+
+    document.getElementById("expForm").reset();
+});
